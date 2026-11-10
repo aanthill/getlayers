@@ -17,6 +17,65 @@ Template: [[templates/adr-note]].
 
 ---
 
+## ADR-0033 — One root layout per language
+
+**Status:** Accepted · 2026-11-10
+
+**Decision.** English lives at `/` under `app/(en)`, Spanish at `/es` under
+`app/(es)`; each route group has its own root layout rendering `SiteDocument`
+with its `lang`. Unmatched URLs are served by `app/global-not-found.tsx`.
+
+**Why.** `<html lang>` has to be right in the served HTML and routes must stay
+static (hard rule #15). The `app/[lang]` + proxy-rewrite structure the
+`i18n-seo` skill sketches does the same for many languages and pages; for two
+languages and one translated page, two literal layouts are less machinery and
+leave the proxy matching four paths instead of every request.
+
+**When building.** A third language, or translated sub-pages, is the moment to
+move to `app/[lang]` (skill `i18n-seo`). The saved language redirects only from
+the bare `/`, only for a visitor who chose it — never by `Accept-Language`,
+never a robot. See [[i18n-theme]].
+
+---
+
+## ADR-0032 — No consent banner
+
+**Status:** Accepted · 2026-11-10
+
+**Decision.** `SiteDocument` does not mount the starter's cookie banner.
+
+**Why.** The site sets no cookies and loads no analytics or third-party
+script; the only things kept are the visitor's theme and language, in their own
+`localStorage`. A banner saying "this website uses cookies" would be untrue and
+would cover the hero's project index on a phone.
+
+**When building.** Adding analytics, an embed or anything that sets a cookie
+reverses this: mount `<LazyCookie />` and `CONSENT_FLAG_SCRIPT` again and update
+`src/data/mocks/legal.ts`. See [[components/common]].
+
+---
+
+## ADR-0031 — three.js for the hero, scaled by device tier; no GSAP
+
+**Status:** Accepted · 2026-11-10
+
+**Decision.** The hero's 3D scene is three.js, loaded on demand and drawn at a
+quality chosen by a device tier (0–3). All other motion stays on the starter's
+spring engine. GSAP — asked for in the brief — is not used.
+
+**Why.** Hard rule #1 and `verify.sh` ban GSAP; the owner chose to keep the
+rule when shown the conflict. The spring engine covers the brief's motion
+(scroll-driven type, parallax, a pinned sideways gallery, hover, the page
+curtain). three.js is not an animation library and the starter ships the
+utilities a scene needs ([[webgl-scenes]]).
+
+**When building.** Quality is data (`QUALITY` in `hero-scene.tsx`): the same
+field with fewer bars and pixels — never a different design per device. Nothing
+decides markup on the tier before the probe has run. See
+[[adaptive-performance]], [[components/portfolio]].
+
+---
+
 ## ADR-0030 — Lint rules back on; the engine typed (authorised edit)
 
 **Status:** Accepted · 2026-10-14 · amends ADR-0009 (engine protection)

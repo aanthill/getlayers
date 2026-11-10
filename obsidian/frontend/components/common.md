@@ -10,6 +10,12 @@ providers. Conventions: [[component-conventions]].
 
 ## Cookie — `Cookie/`
 
+> [!note] Not mounted in this project (ADR-0032)
+> The portfolio sets no cookies and loads no third-party script, so the consent
+> banner is not rendered — `SiteDocument` does not mount `<LazyCookie />` or
+> inline `CONSENT_FLAG_SCRIPT`. The component stays in the repo: mount both
+> again the day analytics or an embed is added.
+
 Self-contained cookie consent system — a bottom-right **banner** plus a full
 category **preferences modal**. No third-party library (the old
 `react-cookie-consent` dependency was removed). Lives in `src/components/common/Cookie/`.

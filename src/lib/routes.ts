@@ -65,8 +65,21 @@ export const ROUTES = [
     path: "/",
     label: "Home",
     indexable: true,
+    updated: "2026-11-10",
     changeFrequency: "monthly",
     priority: 1,
+    alternates: { en: "/", es: "/es" },
+  },
+  {
+    path: "/es",
+    label: "Inicio",
+    summary:
+      "El portfolio de Amelia Nuñez en español: proyectos de software full-stack, móvil e IoT.",
+    indexable: true,
+    updated: "2026-11-10",
+    changeFrequency: "monthly",
+    priority: 0.9,
+    alternates: { en: "/", es: "/es" },
   },
   {
     path: "/privacy-policy",

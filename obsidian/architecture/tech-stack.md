@@ -1,6 +1,6 @@
 ---
 tags: [architecture, stable]
-updated: 2026-10-07
+updated: 2026-11-10
 ---
 
 # Tech Stack
@@ -40,6 +40,17 @@ See [[design-system]].
 
 No `framer-motion`, no CSS transitions/keyframes. See [[animation-system]] and
 [[text-engine]]. ADR: [[decisions-log]] ADR-0002.
+
+## 3D
+
+| Package | Version | Role |
+|---------|---------|------|
+| `three` | `^0.180.0` | The hero scene (`src/lib/scene/signal-field.ts`) — loaded with `import()` only on devices whose tier asks for it. See [[components/portfolio]], [[adaptive-performance]] |
+| `@types/three` | `^0.187.0` (dev) | Types |
+
+Fonts: **Archivo** (variable, with its width axis — the condensed black
+display face) and **JetBrains Mono** (labels), both `next/font/google`, loaded
+in `src/layouts/site-document.tsx`.
 
 ## Scroll & state
 

@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   // Drop the `X-Powered-By: Next.js` response header.
   poweredByHeader: false,
 
+  // Two root layouts (one per language): an unmatched URL belongs to neither,
+  // so `app/global-not-found.tsx` serves the 404.
+  experimental: { globalNotFound: true },
+
   compiler: {
     // Strip `console.*` from production bundles, keeping error/warn for
     // monitoring. Left on in dev so logs stay available.

@@ -1,6 +1,6 @@
 ---
 tags: [architecture, stable]
-updated: 2026-10-06
+updated: 2026-11-10
 ---
 
 # Folder Structure
@@ -44,30 +44,45 @@ src/
 ├── proxy.ts                # robots on "/" → /robot-view (UA via utils/bot-ua.ts)
 │
 ├── app/                    # Next.js routes — keep lean, routing only
-│   ├── layout.tsx          # Root layout — provider tree lives here
-│   ├── page.tsx            # Route → delegates to a view
+│   ├── (en)/               # English — its own root layout (<html lang="en">)
+│   │   ├── layout.tsx      #   renders layouts/site-document.tsx
+│   │   ├── page.tsx        #   "/"  → HomeView lang="en"
+│   │   ├── robot-view/     #   the robot form of "/" — see [[robot-form]]
+│   │   ├── privacy-policy/ #   English only
+│   │   ├── error.tsx       #   Route-segment error boundary
+│   │   └── not-found.tsx   #   notFound() inside the site
+│   ├── (es)/               # Spanish — its own root layout (<html lang="es">)
+│   │   ├── layout.tsx
+│   │   ├── es/page.tsx     #   "/es" → HomeView lang="es"
+│   │   └── robot-view/es/  #   the robot form of "/es"
+│   ├── global-not-found.tsx # 404 for unmatched URLs (two root layouts)
 │   ├── api/<resource>/route.ts  # API endpoints — see [[api-architecture]]
-│   ├── error.tsx           # Route-segment error boundary
-│   ├── not-found.tsx       # 404 page
-│   ├── robot-view/page.tsx # the robot form of "/" — see [[robot-form]]
-│   ├── privacy-policy/     # boilerplate legal route (TODO(legal))
 │   ├── robots.ts           # → /robots.txt
 │   ├── sitemap.ts          # → /sitemap.xml
 │   ├── manifest.ts         # → /manifest.webmanifest
 │   └── globals.css         # Tailwind v4 config + design tokens
-│                           # (no loading.tsx, no favicon.ico — see [[routing]], [[seo-metadata]])
+│                           # (no root layout.tsx — see [[i18n-theme]]; no loading.tsx,
+│                           #  no favicon.ico — see [[routing]], [[seo-metadata]])
 │
-├── views/                  # Page-level components — one per route
-│   ├── home.tsx            # HomeView({ robot }) (Server Component, empty — start here)
+├── views/                  # Page-level components — Server Components, no "use client"
+│   ├── home.tsx            # HomeView({ lang, robot }) — composes components/portfolio
+│   ├── home-metadata.ts    # each language's <head>
+│   ├── not-found.tsx       # the 404 view
 │   └── legal/              # LegalDocument + PrivacyPolicyView
 │
+├── data/
+│   ├── portfolio/          # en.ts · es.ts · types.ts — every string the page shows
+│   └── mocks/legal.ts      # the privacy policy's copy
+│
 ├── layouts/                # Reusable layout wrappers
+│   ├── site-document.tsx   # <html> + <body> + chrome — rendered by both root layouts
 │   └── scroll-layout.tsx   # Lenis smooth-scroll wrapper
 │
 ├── components/
 │   ├── ui/                 # Design-system primitives (Button, Input…) — empty, add as needed
 │   ├── common/             # Shared infrastructure (Cookie, grid, ReducedMotion, Skeletons,
 │   │                       #   robot-view + robot-*, origin-sync, scene-viewport)
+│   ├── portfolio/          # The portfolio's sections — see [[components/portfolio]]
 │   └── animation/springs/  # ⚠️ Animation engine — #do-not-modify
 │
 ├── hooks/                  # Custom hooks, grouped by domain

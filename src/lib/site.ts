@@ -47,16 +47,24 @@ const vercelProduction = serverEnv.VERCEL_PROJECT_PRODUCTION_URL;
 
 export const siteConfig = {
   /** The brand, exactly as the logo writes it. */
-  name: `${TODO} Brand name`,
+  name: "Amelia Nuñez",
   /**
    * The home page's `<title>`: the brand + what it is, ≤ 60 characters
    * ("Acme — Industrial design studio"). Sub-pages use `%s · <name>`.
    */
-  title: `${TODO} Brand — what it is`,
+  title: "Amelia Nuñez — Software Developer",
   /** 120–160 characters, from the site's own copy (the hero's lead line). */
-  description: `${TODO} One or two sentences from the site's own copy, 120–160 characters.`,
+  description:
+    "Portfolio of Amelia Nuñez, software developer: full-stack, mobile and IoT projects, from the sensor on the board to the app in your hand.",
   /** 5–8 phrases from the copy. */
-  keywords: [] as string[],
+  keywords: [
+    "software developer",
+    "full-stack",
+    "mobile",
+    "IoT",
+    "portfolio",
+    "Amelia Nuñez",
+  ] as string[],
   /**
    * Public origin, no trailing slash. Drives canonical URLs, OG tags, the
    * sitemap, robots.txt and JSON-LD. `NEXT_PUBLIC_SITE_URL` (set it for a
@@ -71,18 +79,18 @@ export const siteConfig = {
   /** Default Open Graph / Twitter share image (path under `public/`), 1200×630. */
   ogImage: "/open-graph.png",
   /** Describes the share image for screen readers and when it fails to load. */
-  ogImageAlt: `${TODO} What the share image shows`,
+  ogImageAlt: "Amelia Nuñez — Software Developer",
   /**
    * The site's real X/Twitter handle (`"@acme"`), or `undefined` — the
    * generator then omits the tags. Never invent one: it tags a stranger.
    */
   twitterHandle: undefined as string | undefined,
   /** Author / creator / publisher — the brand, not the agency. */
-  author: `${TODO} Brand name`,
+  author: "Amelia Nuñez",
   /** Browser theme-color (address bar / PWA) — the brand's ground. */
-  themeColor: "#000000",
+  themeColor: "#0a0a0a",
   /** The manifest and the PWA splash background. */
-  backgroundColor: "#000000",
+  backgroundColor: "#0a0a0a",
   locale: "en_US",
   /**
    * Facts about the organisation — the JSON-LD `Organization` node and the
@@ -95,7 +103,7 @@ export const siteConfig = {
     /** Year founded, `YYYY` (or `YYYY-MM-DD`). */
     foundingDate: undefined as string | undefined,
     /** Public contact address. */
-    email: undefined as string | undefined,
+    email: "ameliant310@gmail.com" as string | undefined,
     /** International format: `+44 20 7946 0000`. */
     telephone: undefined as string | undefined,
     /** A street address, for a business people visit or that serves an area. */
@@ -110,7 +118,7 @@ export const siteConfig = {
         }
       | undefined,
     /** Profiles the site itself links to (LinkedIn, Instagram, Crunchbase…) — `sameAs`. */
-    sameAs: [] as string[],
+    sameAs: ["https://github.com/aanthill"] as string[],
     /*
       Local business facts (skill: local-seo). Emitted only when the JSON-LD
       `type` is a LocalBusiness subtype — hours, coordinates and a price range

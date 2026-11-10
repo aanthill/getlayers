@@ -1,16 +1,14 @@
 /**
- * Copy for the privacy policy the cookie banner and its preferences modal link
- * to (`/privacy-policy`).
+ * Copy for the privacy policy (`/privacy-policy`, linked from the footer).
  *
- * ⚠️ TODO(legal): generic boilerplate, not legal advice. It exists so the link
- * resolves — a linked page that 404s is a broken promise in the consent flow,
- * a console error on every page (`<Link>` prefetches it: Best Practices < 100)
- * and a crawl error. Say what this site really collects, add the contact line,
- * have counsel review it before launch, and keep `LEGAL_UPDATED` honest.
+ * It says what this site really does: no forms, no accounts, no analytics, no
+ * cookies — only the visitor's theme and language, kept in their own browser.
+ * Plain wording, not legal advice: have it reviewed before relying on it, and
+ * rewrite it (and `LEGAL_UPDATED`) the day the site starts collecting anything.
  */
 import type { LegalSection } from "@/views/legal/legal-document";
 
-export const LEGAL_UPDATED = "Last updated TODO: date";
+export const LEGAL_UPDATED = "Last updated 10 November 2026";
 
 export const privacyPolicy: {
   title: string;
@@ -19,37 +17,37 @@ export const privacyPolicy: {
 } = {
   title: "Privacy Policy",
   intro:
-    "This policy explains what we collect when you use this website, why we collect it, and the choices you have.",
+    "This policy explains what this website collects when you use it, why, and the choices you have.",
   sections: [
     {
-      heading: "What we collect",
+      heading: "What is collected",
       body: [
-        "TODO: what the site's forms collect — e.g. when you send an enquiry we receive the name, email address and message you choose to give us.",
-        "Like most websites, our hosting provider records standard technical information with each request — IP address, browser and device type, and the pages requested. This is used to keep the site running and secure.",
+        "This site has no forms, no accounts and no analytics. If you write to me by email, I receive what you choose to send.",
+        "Like most websites, the hosting provider records standard technical information with each request — IP address, browser and device type, and the pages requested. This is used to keep the site running and secure.",
       ],
     },
     {
-      heading: "Cookies and analytics",
+      heading: "Cookies and storage",
       body: [
-        "The site sets only the cookies needed to remember your cookie choices. Any analytics or marketing cookies are off until you accept them, and you can change your decision at any time through the cookie preferences on this site.",
+        "The site sets no cookies. Your browser keeps two preferences on your own device — the theme and the language you chose — so your next visit opens the same way. They are never sent anywhere, and you can clear them in your browser's settings.",
       ],
     },
     {
-      heading: "How we use it",
+      heading: "How it is used",
       body: [
-        "We use what you send us to answer you. We do not sell your information, and we do not use it for unrelated marketing without asking first.",
+        "I use what you send me to answer you. I do not sell your information, and I do not use it for unrelated marketing.",
       ],
     },
     {
-      heading: "How long we keep it",
+      heading: "How long it is kept",
       body: [
-        "We keep what you send us for as long as we need it to answer you and to meet our legal obligations, then delete it.",
+        "I keep what you send me for as long as I need it to answer you, then delete it.",
       ],
     },
     {
       heading: "Your rights",
       body: [
-        "You can ask us for a copy of what we hold about you, ask us to correct it, or ask us to delete it. Use the contact details on this site and we will respond.",
+        "You can ask for a copy of what I hold about you, ask me to correct it, or ask me to delete it. Use the contact details on this site and I will respond.",
       ],
     },
   ],

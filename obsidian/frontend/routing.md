@@ -1,6 +1,6 @@
 ---
 tags: [frontend, stable]
-updated: 2026-10-06
+updated: 2026-11-10
 ---
 
 # Routing
@@ -35,9 +35,15 @@ here on route `/` (see [[ai-agent-guide]] / [[new-page]]).
 
 | Route | File | View |
 |-------|------|------|
-| `/` | `src/app/page.tsx` | `views/home.tsx` → `HomeView` |
-| `/robot-view` | `src/app/robot-view/page.tsx` | `HomeView robot` — reached only via the proxy's rewrite of `/` for robots ([[robot-form]]) |
-| `/privacy-policy` | `src/app/privacy-policy/page.tsx` | `views/legal/` → `PrivacyPolicyView` (boilerplate, `TODO(legal)`) |
+| `/` | `src/app/(en)/page.tsx` | `views/home.tsx` → `HomeView lang="en"` |
+| `/es` | `src/app/(es)/es/page.tsx` | `HomeView lang="es"` |
+| `/robot-view` · `/robot-view/es` | `src/app/(en)/robot-view/page.tsx` · `src/app/(es)/robot-view/es/page.tsx` | `HomeView robot` — reached only via the proxy's rewrite of `/` / `/es` for robots ([[robot-form]]) |
+| `/privacy-policy` | `src/app/(en)/privacy-policy/page.tsx` | `views/legal/` → `PrivacyPolicyView` (English only) |
+
+`(en)` and `(es)` are route groups, each with its **own root layout** — one per
+language, see [[i18n-theme]]. There is no `src/app/layout.tsx`; both layouts
+render `src/layouts/site-document.tsx`, and `src/app/global-not-found.tsx`
+serves unmatched URLs.
 
 ## Special files
 

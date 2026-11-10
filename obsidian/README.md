@@ -1,6 +1,6 @@
 ---
 tags: [moc, home]
-updated: 2026-10-07
+updated: 2026-11-10
 ---
 
 # 🧠 next16-claude-starter — Project Brain
@@ -10,9 +10,10 @@ how the project is built, why decisions were made, and how to extend it — for 
 humans and AI agents (Claude Code, Cursor).
 
 > [!info] What is this project?
-> `next16-claude-starter` (package name `next16-claude-starter`) is a **Next.js 16 starter template**
-> built by [Textura](https://textura.agency) for animation-heavy marketing & landing
-> sites. Every motion is spring-based; there is no backend yet.
+> `getlayers` is **Amelia Nuñez's software development portfolio** — English and
+> Spanish, dark and light — built on the `next16-claude-starter` template by
+> [Textura](https://textura.agency). Every motion is spring-based; the hero is
+> a three.js scene scaled to the device; there is no backend.
 
 ## 🗺️ Map of Content
 
@@ -48,6 +49,9 @@ humans and AI agents (Claude Code, Cursor).
 - [[seo-metadata]] — metadata generation & bot detection
 - [[components/animation-springs|Spring components catalog]]
 - [[components/common|Common components catalog]]
+- [[components/portfolio|Portfolio components catalog]] — the sections, the work gallery, the hero scene, how to add a project
+- [[adaptive-performance]] — device tiers: the same design at a cost the device can pay
+- [[i18n-theme]] — English / Spanish and the dark / light theme
 - [[hooks]] — custom hooks catalog
 - [[utils]] — utility functions catalog
 

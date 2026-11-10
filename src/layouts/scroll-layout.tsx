@@ -12,9 +12,9 @@ export const scrollSpeed = { current: 1 };
 export function ScrollLayout({ children }: { children: React.ReactNode }) {
   // Server-safe rendering
   return (
-    <div className="scroll-layout">
+    <div className="scroll-layout w-full">
       {/* Static content that can be rendered on server */}
-      <div className="scroll-layout-content">{children}</div>
+      <div className="scroll-layout-content w-full">{children}</div>
 
       {/* Client-only functionality */}
       <ScrollController />

@@ -12,48 +12,131 @@
    See obsidian/frontend/design-system.md → "Token naming convention".
    --------------------------------------------------------------------------- */
 :root {
+  /* Portfolio palette — ink ground, paper type, one screaming accent. */
   --raw-color-white: #ffffff;
-  --raw-color-neutral-100: #ededed;
-  --raw-color-neutral-900: #171717;
-  --raw-color-neutral-950: #0a0a0a;
+  --raw-color-ink-950: #0a0a0a;
+  --raw-color-ink-900: #151513;
+  --raw-color-ink-700: #33332e;
+  --raw-color-paper-50: #f4f1e8;
+  --raw-color-paper-100: #e8e4d6;
+  --raw-color-paper-300: #bdb8a6;
+  --raw-color-stone-400: #9d998c;
+  --raw-color-stone-600: #57544a;
+  --raw-color-volt-400: #d4ff3a;
+  --raw-color-volt-700: #4b5d00;
 
+  --raw-radius-none: 0rem;
   --raw-radius-sm: 0.5rem;
   --raw-radius-md: 0.75rem;
 
   --raw-duration-fast: 150ms;
   --raw-duration-normal: 250ms;
+
+  /* Type scale, phone / desktop. The root font-size already scales with the
+     viewport (adaptive grid below), so these are proportions of the layout. */
+  --raw-size-mega-phone: 6.25rem;
+  --raw-size-mega-desktop: 17rem;
+  --raw-size-display-phone: 3.5rem;
+  --raw-size-display-desktop: 9rem;
+  --raw-size-title-phone: 2.5rem;
+  --raw-size-title-desktop: 5rem;
+  --raw-size-lead-phone: 1.125rem;
+  --raw-size-lead-desktop: 1.5rem;
+  --raw-size-body-phone: 1rem;
+  --raw-size-body-desktop: 1.0625rem;
+  --raw-size-label-phone: 0.6875rem;
+  --raw-size-label-desktop: 0.75rem;
+
+  --raw-leading-mega: 0.98;
+  --raw-leading-display: 1.1;
+  --raw-leading-copy: 1.45;
+  --raw-tracking-mega: -0.02em;
+  --raw-tracking-label: 0.1em;
+
+  --raw-font-stretch-condensed: 62%;
+  --raw-font-stretch-normal: 100%;
+  --raw-font-weight-black: 900;
+
+  --raw-size-hatch: 1.25rem;
+  --raw-size-rule: 0.125rem;
+  --raw-size-bar: 4.25rem;
+  --raw-size-dock: 3.25rem;
+  --raw-size-frame: 34rem;
 }
 
 /* ---------------------------------------------------------------------------
    TIER 2 — SEMANTIC  (role names, no namespace prefix)
    Purpose, not appearance. Always `var(--raw-*)` — never a literal.
-   This is the themeable layer: dark mode overrides happen HERE, which is why
-   these are separate from the @theme bindings below (see the note there).
+   This is the themeable layer. The site is DARK BY DEFAULT; the light theme
+   overrides these roles under `[data-theme="light"]` (set before paint by
+   PREFERENCES_SCRIPT, `src/lib/i18n.ts`).
    Grammar: --<role>[-<variant>][-<state>]
    --------------------------------------------------------------------------- */
 :root {
-  --background: var(--raw-color-white);
-  --foreground: var(--raw-color-neutral-900);
+  --background: var(--raw-color-ink-950);
+  --foreground: var(--raw-color-paper-50);
+  --surface: var(--raw-color-ink-900);
+  --line: var(--raw-color-ink-700);
+  --muted: var(--raw-color-stone-400);
+  /* The accent as a fill, and the type that sits on it. */
+  --accent: var(--raw-color-volt-400);
+  --accent-contrast: var(--raw-color-ink-950);
+  /* The accent as type on the page ground. */
+  --emphasis: var(--raw-color-volt-400);
 
   --duration-fast: var(--raw-duration-fast);
   --duration-normal: var(--raw-duration-normal);
 
-  /* Consent UI (cookie banner + preferences modal) — its own roles so it can be
-     dressed in the project's brand without touching the page theme. Re-point
-     these at the project's tokens when the site gets its palette — see
-     obsidian/frontend/components/common.md → "Brand the consent UI". */
-  --consent-surface: var(--background);
+  --size-mega: var(--raw-size-mega-phone);
+  --size-display: var(--raw-size-display-phone);
+  --size-title: var(--raw-size-title-phone);
+  --size-lead: var(--raw-size-lead-phone);
+  --size-body: var(--raw-size-body-phone);
+  --size-label: var(--raw-size-label-phone);
+
+  --line-height-mega: var(--raw-leading-mega);
+  --line-height-display: var(--raw-leading-display);
+  --line-height-copy: var(--raw-leading-copy);
+  --letter-spacing-mega: var(--raw-tracking-mega);
+  --letter-spacing-label: var(--raw-tracking-label);
+
+  --stretch-display: var(--raw-font-stretch-condensed);
+  --weight-display: var(--raw-font-weight-black);
+
+  --hatch-size: var(--raw-size-hatch);
+  --rule-size: var(--raw-size-rule);
+  /* The fixed top bar, and the phone's bottom dock of section links. */
+  --bar-height: var(--raw-size-bar);
+  --dock-height: var(--raw-size-dock);
+  /* A desktop screenshot's frame in the work gallery. */
+  --frame-width: var(--raw-size-frame);
+
+  /* Consent UI — dressed in the site's palette. */
+  --consent-surface: var(--surface);
   --consent-text: var(--foreground);
-  --consent-action: var(--foreground);
-  --consent-action-text: var(--background);
-  --consent-radius: var(--raw-radius-md);
-  --consent-radius-control: var(--raw-radius-sm);
+  --consent-action: var(--accent);
+  --consent-action-text: var(--accent-contrast);
+  --consent-radius: var(--raw-radius-none);
+  --consent-radius-control: var(--raw-radius-none);
 }
 
-@media (prefers-color-scheme: dark) {
+[data-theme="light"] {
+  --background: var(--raw-color-paper-50);
+  --foreground: var(--raw-color-ink-950);
+  --surface: var(--raw-color-paper-100);
+  --line: var(--raw-color-paper-300);
+  --muted: var(--raw-color-stone-600);
+  --emphasis: var(--raw-color-volt-700);
+}
+
+@media (min-width: 1024px) {
   :root {
-    --background: var(--raw-color-neutral-950);
-    --foreground: var(--raw-color-neutral-100);
+    --size-mega: var(--raw-size-mega-desktop);
+    --size-display: var(--raw-size-display-desktop);
+    --size-title: var(--raw-size-title-desktop);
+    --size-lead: var(--raw-size-lead-desktop);
+    --size-body: var(--raw-size-body-desktop);
+    --size-label: var(--raw-size-label-desktop);
   }
 }
 
@@ -73,17 +156,41 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-emphasis: var(--emphasis);
   --color-consent-surface: var(--consent-surface);
   --color-consent-text: var(--consent-text);
   --color-consent-action: var(--consent-action);
   --color-consent-action-text: var(--consent-action-text);
   --radius-consent: var(--consent-radius);
   --radius-consent-control: var(--consent-radius-control);
-  --font-sans: var(--font-onest);
+  --font-sans: var(--font-archivo);
+  --font-mono: var(--font-jetbrains-mono);
 
-  /* Leading floor for clipped TextEngine reveals — see
-     obsidian/frontend/text-engine.md → "Alignment & line-height". */
-  --leading-display: 1.1;
+  --text-mega: var(--size-mega);
+  --text-display: var(--size-display);
+  --text-title: var(--size-title);
+  --text-lead: var(--size-lead);
+  --text-body: var(--size-body);
+  --text-label: var(--size-label);
+
+  /* `leading-display` (1.1) is the floor for clipped TextEngine reveals — see
+     obsidian/frontend/text-engine.md. `leading-mega` is tighter and is only
+     for type that is never clipped. */
+  --leading-mega: var(--line-height-mega);
+  --leading-display: var(--line-height-display);
+  --leading-copy: var(--line-height-copy);
+  --tracking-mega: var(--letter-spacing-mega);
+  --tracking-label: var(--letter-spacing-label);
+
+  --spacing-bar: var(--bar-height);
+  --spacing-dock: var(--dock-height);
+  --spacing-rule: var(--rule-size);
+  --spacing-frame: var(--frame-width);
 
   --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
 }
@@ -104,6 +211,16 @@ body {
 }
 
 @layer base {
+  :focus-visible {
+    outline: var(--rule-size) solid var(--emphasis);
+    outline-offset: var(--rule-size);
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
   /* Adaptive scaling grid — scales the root font-size with the viewport so a
      rem-based layout stays proportional. Each breakpoint divides FONT_BASE
      (16px) by the design base width its range was laid out at:
@@ -137,6 +254,34 @@ body {
       font-size: 4.444444vw; /* 16 * 100 / 360 */
     }
   }
+}
+
+/* The display face: Archivo at its condensed width, black, upper case. One
+   utility because the three always travel together. */
+@utility type-display {
+  font-stretch: var(--stretch-display);
+  font-weight: var(--weight-display);
+  text-transform: uppercase;
+}
+
+/* The small mono label used for indices, tags and captions. */
+@utility type-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+}
+
+/* A diagonal hatch in the type colour of whatever it sits on — the moving
+   texture of the image plates. The layer is translated by a spring. */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    currentColor 0,
+    currentColor var(--rule-size),
+    transparent var(--rule-size),
+    transparent var(--hatch-size)
+  );
 }
 
 @layer utilities {

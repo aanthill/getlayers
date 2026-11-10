@@ -18,6 +18,32 @@ For *why* the conventions are what they are, see [[decisions-log]].
 
 ## 2026-11-10
 
+**The portfolio.** The home page is Amelia Nuñez's portfolio, in English (`/`)
+and Spanish (`/es`), dark by default with a light theme; both choices are
+remembered ([[i18n-theme]], ADR-0033).
+
+- Sections: hero with the project index, the work gallery (pinned and
+  travelling sideways on desktop, stacked on phones), about, contact —
+  [[components/portfolio]]. Copy in `src/data/portfolio/{en,es}.ts`.
+- **New dependency: `three`** (`^0.180.0`, + `@types/three`) for the hero
+  scene, loaded on demand and scaled by a device tier — [[adaptive-performance]],
+  ADR-0031. GSAP was asked for and left out (hard rule #1; the owner's call).
+- Fonts: Onest → Archivo (variable width) + JetBrains Mono. New palette and
+  type scale in `globals.css` ([[design-system]]).
+- `src/app/layout.tsx` is gone: one root layout per language, both rendering
+  `src/layouts/site-document.tsx`; `global-not-found.tsx` serves the 404. The
+  Spanish robot form is `/robot-view/es`.
+- The consent banner is no longer mounted — the site sets no cookies
+  (ADR-0032); the privacy policy now says what the site really does.
+- SiteTimeline is shown with real screenshots taken from
+  `sitetimeline.vercel.app` on 2026-11-10 (`public/assets/projects/`); its
+  description and features are the product's own words. Its technology list
+  holds only what is observable (Next.js, Vercel).
+- Still open: the IoT project's image (the accent plate holds its place),
+  education and LinkedIn (hidden until given), the share image and favicons
+  (`yarn qa:brand`), and every measurement — no Lighthouse, scroll test or
+  phone check has been run.
+
 **Project started from `next16-claude-starter`.** The starter was copied in
 without its git history (upstream commit `4ce3ade`) and the package renamed to
 `getlayers`. No code changes yet — `src/lib/site.ts` still holds its `TODO:`

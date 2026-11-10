@@ -1,6 +1,6 @@
 ---
 tags: [frontend, design-system, stable]
-updated: 2026-10-10
+updated: 2026-11-10
 ---
 
 # Design System — Tailwind v4
@@ -191,8 +191,32 @@ If you are reaching past this list, you want `<Hover>` — see
 
 ## Typography
 
-Font: **Onest** (`next/font/google`), bound to `--font-onest` → `--font-sans`.
-Loaded in `src/app/layout.tsx` and exposed on `<body>` as `--font-onest`.
+Fonts (`next/font/google`, loaded in `src/layouts/site-document.tsx`):
+**Archivo** — variable, with its width axis — bound to `--font-archivo` →
+`--font-sans`, and **JetBrains Mono** → `--font-mono`.
+
+- `type-display` (`@utility`) — Archivo condensed (62 %), black, upper case: the
+  display face. Sizes: `text-mega` (the name), `text-display`, `text-title`,
+  `text-lead`, `text-body`, `text-label`; each has a phone and a desktop value
+  (Tier 1) behind one semantic `--size-*` token.
+- `type-label` (`@utility`) — the small mono label.
+- `leading-mega` (0.98) only for type that is **never clipped**; clipped
+  TextEngine reveals keep `leading-display` (1.1).
+
+## This project's palette
+
+Ink ground, paper type, one accent (volt). Dark is the default; the light theme
+overrides the same roles under `[data-theme="light"]` — see [[i18n-theme]].
+
+| Role | Utility | Use |
+|------|---------|-----|
+| `--background` / `--foreground` | `bg-background`, `text-foreground` | the page |
+| `--surface` / `--line` / `--muted` | `bg-surface`, `border-line`, `text-muted` | raised areas, hairlines, secondary text |
+| `--accent` / `--accent-contrast` | `bg-accent`, `text-accent-contrast` | the accent as a **fill** and the type on it |
+| `--emphasis` | `text-emphasis` | the accent as **type** on the page ground (volt on dark, a dark olive on light — volt on paper is unreadable) |
+
+`bg-hatch` (`@utility`) is the diagonal hatch of the image plates, drawn in
+`currentColor`.
 
 ## Styling rules
 
@@ -200,7 +224,7 @@ Loaded in `src/app/layout.tsx` and exposed on `<body>` as `--font-onest`.
 - Extract a repeated pattern to a **React component** — not a `@layer
   components` class. See *Where a style goes* above (ADR-0012).
 - Mobile-first responsive: `sm:` / `md:` / `lg:` / `xl:` prefixes.
-- Dark mode: `dark:` prefix or token overrides in a `prefers-color-scheme` block.
+- Themes: token overrides under `[data-theme="light"]` (dark is `:root`) — no `dark:` prefix, no `prefers-color-scheme` block.
 - No inline `style` except for dynamic values (e.g. spring-animated values).
 - Motion is spring-based; CSS `transition-*` only for the narrow hover/focus case
   above — never `@keyframes`.

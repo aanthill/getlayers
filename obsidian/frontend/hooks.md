@@ -1,6 +1,6 @@
 ---
 tags: [frontend, stable]
-updated: 2026-10-06
+updated: 2026-11-10
 ---
 
 # Catalog — Hooks
@@ -42,6 +42,14 @@ components — don't call them directly unless extending the engine.
 > hooks) all subscribe to the single app-wide ticker in `src/lib/animation/ticker.ts`
 > rather than each starting their own `requestAnimationFrame`. See
 > [[animation-system]]. The ticker is **not** `#do-not-modify`.
+
+## `use-device-tier.ts`
+
+`useDeviceTier()` → the device's tier (`0`–`3`), or `null` before the probe has
+run (the server and the first client render — never decide markup on it).
+`useDeviceTierStore` (zustand) also holds `setTier` (called by
+`<DeviceTierProbe>`) and `demote()` (the hero scene, when it measured itself too
+slow). Detection lives in `src/lib/device-tier.ts`. See [[adaptive-performance]].
 
 ## Adding a hook
 

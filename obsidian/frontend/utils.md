@@ -1,6 +1,6 @@
 ---
 tags: [frontend, stable]
-updated: 2026-10-07
+updated: 2026-11-10
 ---
 
 # Catalog — Utilities
@@ -123,6 +123,20 @@ code or a set without the page itself; `routeLanguages(path)` reads it from
 `ROUTES[].alternates`; `hreflangProblem(code)` explains a bad code;
 `X_DEFAULT`. `generateMetadata` takes the result as `languages`, plus
 `alternateLocales` for `og:locale:alternate`. Skill: `i18n-seo`.
+
+## `seo/person-structured-data.ts`
+
+`getPersonStructuredData(content)` → a `ProfilePage` whose `mainEntity` is the
+`Person` (name, job title, email, `knowsAbout`, `sameAs`), in the page's
+language. Rendered once by `HomeView`; states only what the page itself shows.
+
+## `src/lib/` — not utils, listed here so they are found
+
+| Module | What |
+|--------|------|
+| `lib/i18n.ts` | `LOCALES`, `LOCALE_HOME`, `OG_LOCALE`, the storage keys, `PREFERENCES_SCRIPT` — [[i18n-theme]] |
+| `lib/device-tier.ts` | `detectDeviceTier()`, `adjustForBattery()` — [[adaptive-performance]] |
+| `lib/scene/signal-field.ts` | `createSignalField()` — the hero's three.js scene, [[components/portfolio]] |
 
 ## Adding a util
 
